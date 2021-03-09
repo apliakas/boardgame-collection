@@ -1,0 +1,23 @@
+.navbar {
+  height: 50px;
+  width: 100vw;
+  background-color: #101820;
+  display: flex;
+  justify-content: space-between;
+
+  &_left {
+    padding-left: 10vw;
+
+    &_logo {
+
+    }
+  }
+
+  &_right {
+    padding-right: 10vw;
+
+    &_item {
+      
+    }
+  }
+}
