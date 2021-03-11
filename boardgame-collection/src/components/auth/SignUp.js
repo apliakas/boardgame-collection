@@ -1,51 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class SignUp extends Component {
-  state = {
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: ''
-  }
+const initialState= {
+  email: '',
+  password: '',
+  firstName: '',
+  lastName: ''
+}
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
+const SignUp = () => {
+  const [credentials, setCredentials] = useState(initialState)
+
+  const handleChange = (e) => {
+    const key = e.target.id;
+    const value = e.target.value
+
+    setCredentials({
+      ...credentials,
+      [key]: value,
     })
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
+    console.log(credentials)
   };
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <h5>Sign Up</h5>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input type='email' id='email' onChange={this.handleChange} ></input>
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input type='password' id='password' onChange={this.handleChange} ></input>
-          </div>
-          <div>
-            <label htmlFor='firstName'>First Name</label>
-            <input type='firstName' id='firstName' onChange={this.handleChange} ></input>
-          </div>
-          <div>
-            <label htmlFor='lastName'>Last Name</label>
-            <input type='lastName' id='lastName' onChange={this.handleChange} ></input>
-          </div>
-          <div>
-            <button>Login</button>
-          </div>
-        </form>
-      </div>
-    )
-  }
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h5>Sign Up</h5>
+        <div>
+          <label htmlFor='email'>Email</label>
+          <input type='email' id='email' onChange={handleChange} ></input>
+        </div>
+        <div>
+          <label htmlFor='password'>Password</label>
+          <input type='password' id='password' onChange={handleChange} ></input>
+        </div>
+        <div>
+          <label htmlFor='firstName'>First Name</label>
+          <input type='firstName' id='firstName' onChange={handleChange} ></input>
+        </div>
+        <div>
+          <label htmlFor='lastName'>Last Name</label>
+          <input type='lastName' id='lastName' onChange={handleChange} ></input>
+        </div>
+        <div>
+          <button>Login</button>
+        </div>
+      </form>
+    </div>
+  )
   
 };
 

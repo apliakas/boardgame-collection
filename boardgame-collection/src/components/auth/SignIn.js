@@ -1,41 +1,46 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class SignIn extends Component {
-  state = {
-    email: '',
-    password: ''
-  }
+const initialState= {
+  email: '',
+  password: ''
+}
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
+const SignIn = () => {
+  const [credentials, setCredentials] = useState(initialState)
+
+  const handleChange = (e) => {
+    const key = e.target.id;
+    const value = e.target.value
+
+    setCredentials({
+      ...credentials,
+      [key]: value,
     })
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
+    console.log(credentials)
   };
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <h5>Sign In</h5>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input type='email' id='email' onChange={this.handleChange} ></input>
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input type='password' id='password' onChange={this.handleChange} ></input>
-          </div>
-          <div>
-            <button>Login</button>
-          </div>
-        </form>
-      </div>
-    )
-  }
+  
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h5>Sign In</h5>
+        <div>
+          <label htmlFor='email'>Email</label>
+          <input type='email' id='email' onChange={handleChange} ></input>
+        </div>
+        <div>
+          <label htmlFor='password'>Password</label>
+          <input type='password' id='password' onChange={handleChange} ></input>
+        </div>
+        <div>
+          <button>Login</button>
+        </div>
+      </form>
+    </div>
+  )
   
 };
 

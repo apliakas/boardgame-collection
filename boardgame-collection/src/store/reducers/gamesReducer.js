@@ -8,6 +8,11 @@ const initState = {
 }
 
 const gamesReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'ADD_GAME':
+      console.log('game added', action.game)
+
+  }
   return state
 };
 
