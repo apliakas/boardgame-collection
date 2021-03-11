@@ -6,7 +6,8 @@ import styles from './CreateList.module.scss';
 
 const emptyBoardgame = {
   name: '',
-  nOfPlayers: ''
+  nOfPlayers: '',
+  playtime: ''
 }
 
 const Games = (props) => {
@@ -37,6 +38,7 @@ const Games = (props) => {
           <div key={game.id}>
             <h5>{game.name}</h5>
             <p>{game.nOfPlayers}</p>
+            <p>{game.playtime}</p>
           </div>
         ))}
       </div>
@@ -50,6 +52,10 @@ const Games = (props) => {
         <div>
           <label htmlFor='nOfPlayers'>Number of Players</label>
           <input type='nOfPlayers' id='nOfPlayers' onChange={handleChange} ></input>
+        </div>
+        <div>
+          <label htmlFor='playtime'>Playtime</label>
+          <input type='playtime' id='playtime' onChange={handleChange} ></input>
         </div>
         <div>
           <button>Add</button>

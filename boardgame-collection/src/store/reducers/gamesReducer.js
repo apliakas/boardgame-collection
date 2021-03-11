@@ -11,9 +11,13 @@ const gamesReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_GAME':
       console.log('game added', action.game)
-
+      return state;
+    case 'ADD_GAME_ERROR':
+      console.log('add game error', action.err)
+      return state;
+    default:
+      return state;
   }
-  return state
 };
 
 export default gamesReducer;
