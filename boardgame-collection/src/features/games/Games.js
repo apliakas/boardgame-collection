@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createGame } from '../../store/actions/gameActions';
-
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux'
 import styles from './CreateList.module.scss';
 
 const emptyBoardgame = {
@@ -72,9 +73,15 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    games: state.games.boardgames
+    games: state.firestore.ordered.Boardgames
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Games)
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([
+    { collection: 'Boardgames' }
+  ])
+) (Games)
