@@ -73,7 +73,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     games: state.firestore.ordered.Boardgames
   }
