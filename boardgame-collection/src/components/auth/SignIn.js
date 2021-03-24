@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
+import { Redirect } from 'react-router-dom';
 
 const initialState= {
   email: '',
@@ -9,6 +10,9 @@ const initialState= {
 
 const SignIn = (props) => {
   const [credentials, setCredentials] = useState(initialState)
+  const { auth } = props;
+
+  if (auth.uid) return <Redirect to='/' />
 
   const handleChange = (e) => {
     const key = e.target.id;
@@ -48,6 +52,7 @@ const SignIn = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.firebase.auth,
     authError: state.auth.authError
   }
 };

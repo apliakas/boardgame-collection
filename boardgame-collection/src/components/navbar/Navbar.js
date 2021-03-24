@@ -31,7 +31,7 @@ const Navbar = (props) => {
       <div className={styles.navbar_left}>
         <Link to='/' className={styles.navbar_left_logo}>LOGO</Link>
       </div>
-      {auth.isLoaded ? renderNavigation() : <></>}
+      {auth.isLoaded && renderNavigation()}
     </nav>
   )
 };
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {

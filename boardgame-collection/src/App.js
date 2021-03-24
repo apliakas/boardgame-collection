@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
@@ -9,20 +10,28 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 
 
-const App = () => {
+const App = (props) => {
   
   return (
   
     <div className="App">
       <Navbar />
-      <Switch>
-        <Route exact path='/' component={Games} />
-        <Route path='/signin' component={SignIn} />
-        <Route path='/signup' component={SignUp} />
-      </Switch>
+      {props.auth.isLoaded && (
+        <Switch>
+          <Route exact path='/' component={Games} />
+          <Route path='/signin' component={SignIn} />
+          <Route path='/signup' component={SignUp} />
+        </Switch>
+      )}
     </div>
   );
 
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps)(App);

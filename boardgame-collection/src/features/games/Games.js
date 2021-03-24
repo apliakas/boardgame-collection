@@ -4,6 +4,7 @@ import { createGame } from '../../store/actions/gameActions';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux'
 import styles from './CreateList.module.scss';
+import { Redirect } from 'react-router-dom';
 
 const emptyBoardgame = {
   name: '',
@@ -14,8 +15,13 @@ const emptyBoardgame = {
 const Games = (props) => {
   const [boardgame, setBoardgame] = useState(emptyBoardgame)
 
-  const { games } = props
+  const { games, auth } = props
 
+  if (!auth.uid) {
+    return <Redirect to='/signin' />
+  }
+
+  
   const handleChange = (e) => {
     const key = e.target.id;
     const value = e.target.value
@@ -74,7 +80,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    games: state.firestore.ordered.Boardgames
+    games: state.firestore.ordered.Boardgames,
+    auth: state.firebase.auth
   }
 }
 
